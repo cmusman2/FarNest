@@ -13,7 +13,7 @@
 <title>Hotels list</title>
 <link type="text/css" rel="stylesheet" href="resources/styles.css"
 	media="all" />
-</head>
+</head> 
 <body>
 	<table>
 		<tr>
