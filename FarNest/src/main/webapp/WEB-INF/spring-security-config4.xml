@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <!-- basic authentication security-->	
+	<security:http pattern="/getHotels*" auto-config="true" authentication-manager-ref="authmanager">
+		<security:intercept-url pattern="/getHotels*"
+			access="ROLE_USER" />
+		<http-basic entry-point-ref="myBasicAuthenticationEntryPoint" />
+	</security:http>
+	 
+
+    <!-- digest authentication security-->	
+	<security:http pattern="/hotels*" auto-config="true" authentication-manager-ref="authmanager"  entry-point-ref="myDigestAuthenticationEntryPoint">
+		<security:intercept-url pattern="/hotels*" access="ROLE_USER" />
+		<custom-filter ref="digestFilter" after="BASIC_AUTH_FILTER" />
+	</security:http>
+	
+	
+	<!-- form login security-->	
+	<!-- 
+	<security:http auto-config="true" authentication-manager-ref="authmanager">
+
+		<security:intercept-url pattern="/displayHotel*"
+			access="ROLE_USER" />
+		
+		<security:intercept-url pattern="/login"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<security:intercept-url pattern="/**" access="ROLE_USER" />
+ 
+		<security:form-login login-page="/login"
+			default-target-url="/home" authentication-failure-url="/denied" />
+		<security:logout logout-success-url="/logout" />
+		
+		
+	</security:http>	
+	-->
+
+	<beans:bean id="digestFilter"
+		class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter">
+		<beans:property name="userDetailsService" ref="localUserDetailService" />
+		<beans:property name="authenticationEntryPoint" ref="digestEntryPoint" />
+	</beans:bean>
+
+	<beans:bean id="digestEntryPoint"
+		class="org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint">
+		<beans:property name="realmName"
+			value="DigestRealm" />
+		<beans:property name="key" value="acegi" />
+	</beans:bean>
+
+	<authentication-manager id="authmanagerN">
+		<authentication-provider>
+			<user-service id="userService">
+				<user name="eparaschiv" password="eparaschiv" authorities="ROLE_ADMIN" />
+				<user name="user" password="user" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+
+  <!-- 
+	<security:authentication-manager id="authmanager">
+		<security:authentication-provider
+			ref="authenticationProvider">
+			
+			</security:authentication-provider>
+	</security:authentication-manager>
+ -->
+
+
+
+	<security:authentication-manager id="authmanager"> 
+	<security:authentication-provider 
+		user-service-ref="localUserDetailService">
+		
+		</security:authentication-provider> 
+</security:authentication-manager> 
+		 
+	 <!--	
+	 <security:authentication-manager id="authmanager"> <authentication-provider> 
+		<user-service id="userService"> <user name="test" password="mytest" authorities="ROLE_USER" 
+		/> </user-service> </authentication-provider> </security:authentication-manager>  
+ -->
+</beans:beans>

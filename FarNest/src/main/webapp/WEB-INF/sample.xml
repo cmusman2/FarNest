@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:sec="http://www.springframework.org/schema/security" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Secure annotated method invocations -->
+
+    <sec:global-method-security
+        proxy-target-class="false"
+        pre-post-annotations="enabled"
+    />
+
+    <!-- Authentication manager with a static list of users -->
+ 
+    <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider>
+            <sec:user-service id="inMemoryUserDetails">
+                <sec:user name="admin" password="s3cr3t" authorities="ROLE_USER,ROLE_ADMIN" />
+                <sec:user name="dummy" password="s3cr3t" authorities="ROLE_USER" />
+            </sec:user-service>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+
+    <!-- This alias is referred to in web.xml (the Spring security filter name) -->
+
+    <alias name="filterChainProxy" alias="security" />
+
+    <!-- Setup necessary filters for HTTP digest authentication -->
+    <!-- Note: The order in which the filters are declared matters -->
+
+    <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+       <!-- <sec:filter-chain-map path-type="ant"> -->
+        <sec:filter-chain-map>
+            <sec:filter-chain
+                pattern="/**"
+                filters="securityContextFilter,
+                         digestAuthenticationFilter,
+                         exceptionTranslationFilter,
+                         filterSecurityInterceptor"
+            />
+        </sec:filter-chain-map>
+    </bean>
+
+    <!-- Populates SecurityContextHolder upon each HTTP request -->
+    <!-- Note: session creation is disabled for web service use -->
+
+    <bean id="securityContextFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+        <property name="securityContextRepository">
+            <bean p:allowSessionCreation="false" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository" />
+        </property>
+    </bean>
+    
+    <!-- HTTP digest filter and the associated entry point -->
+    
+    <bean
+        id="digestAuthenticationFilter"
+        class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter"
+        p:authenticationEntryPoint-ref="digestAuthenticationEntryPoint"
+        p:userDetailsService-ref="inMemoryUserDetails"
+        p:userCache-ref="userCache"
+    />
+    <bean
+        id="digestAuthenticationEntryPoint"
+        class="org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint"
+        p:realmName="Sample application"
+        p:nonceValiditySeconds="10"
+        p:key="acegi"
+    />
+    
+    <!-- User cache for HTTP digest filter -->
+    <!-- Make sure ehcache.jar and ehcache.xml are available in classpath -->
+    
+    <bean
+        id="userCache"
+        class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache"
+        p:cache-ref="ehCache"
+    />
+    <bean
+        id="ehCache"
+        class="org.springframework.cache.ehcache.EhCacheFactoryBean"
+        p:cacheManager-ref="ehCacheManager"
+        p:cacheName="userDetailsCache"
+    />
+    <bean
+        id="ehCacheManager"
+        class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+    />
+    
+    <!-- Translate security exceptions to HTTP responses -->
+    
+    <bean
+        id="exceptionTranslationFilter"
+        class="org.springframework.security.web.access.ExceptionTranslationFilter"
+        p:authenticationEntryPoint-ref="digestAuthenticationEntryPoint"
+    />
+    
+    <!-- Protect URLs with appropriate roles -->
+    
+    <bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <property name="securityMetadataSource">
+            <sec:filter-security-metadata-source>
+                <sec:intercept-url pattern="/**" access="ROLE_USER" />
+            </sec:filter-security-metadata-source>
+        </property>
+        <property name="authenticationManager" ref="authenticationManager" />
+        <property name="accessDecisionManager" ref="accessDecisionManager" />
+    </bean>
+    
+    <!-- Setup access decision manager with default voters -->
+     
+    <bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <property name="decisionVoters">
+            <list>
+                <bean class="org.springframework.security.access.vote.RoleVoter" />
+                <bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+            </list>
+        </property>
+    </bean>
+
+</beans>

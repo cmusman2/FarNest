@@ -1,0 +1,99 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+        
+         
+        <!-- this evil must be there to get security started- without that expect error:No bean named 'springSecurityFilterChain' is defined -->
+<import resource="spring-security-config.xml" />
+
+	<context:component-scan base-package="com.farnest.common.controller" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:annotation-driven />
+
+	<bean id="localUserDetailService" class="com.farnest.common.dao.LocalUserDetailService" />
+
+	<bean id="authenticationProvider" class="com.farnest.common.dao.CustomAuthenticationProvider" />
+
+	<bean id="myBasicAuthenticationEntryPoint"
+		class="com.farnest.common.interceptor.MyBasicAuthenticationEntryPoint" />
+	<bean id="myDigestAuthenticationEntryPoint"
+		class="com.farnest.common.interceptor.MyDigestAuthenticationEntryPoint" />
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/hotels" />
+			<bean
+				class="com.farnest.common.interceptor.RequestProcessingTimeInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/displayHotel" />
+			<bean
+				class="com.farnest.common.interceptor.RequestProcessingLogingInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="securityContextPersistenceFilter"
+		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+		<property name='securityContextRepository'>
+			<bean
+				class='org.springframework.security.web.context.HttpSessionSecurityContextRepository'>
+				<property name='allowSessionCreation' value='true' />
+			</bean>
+
+		</property>
+	</bean>
+
+
+
+
+	<!-- display titles/messages from property files -->
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<property name="paramName" value="lang" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	<bean id="localeResolver2"
+		class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver">
+	</bean>
+
+	
+	<bean id="localeResolver3"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="basenames">
+			<list>
+				<value>classpath:messages</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="0" />
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+
+</beans>

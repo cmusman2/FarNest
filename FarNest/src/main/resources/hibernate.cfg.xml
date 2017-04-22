@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+ 
+ <!-- mysql -->
+<!--  
+    <property name="connection.url">jdbc:mysql://localhost:3306/usersdb</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">mynewpassw0rd</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+  -->
+   
+  
+    
+   <!-- sql server -->
+  
+        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="connection.url">jdbc:sqlserver://MURU\\SQLEXPRESS:1433;database=TESTDB</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password">admin</property>
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">validate</property>
+ 
+		<mapping class="com.farnest.common.model.Hotel"></mapping>
+		 
+		<mapping class="com.farnest.common.model.Principal"></mapping>
+         
+  
+  
+    <!-- JDBC connection pool (use the built-in) -->
+    <!-- 
+    <property name="connection.pool_size">1</property>
+    <property name="current_session_context_class">thread</property>
+ 
+    
+     -->
+ 
+</session-factory>
+</hibernate-configuration>

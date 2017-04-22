@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table id="myData">
+
+          </table>
+
+           <script type="text/javascript">
+              $('#search').click(function() {
+                    alert("submit handler has fired");
+                    $.ajax({
+                        type: 'POST',
+                        url: 'cityResults.htm',
+                        data: $('#cityDetails').serialize(),
+
+                        success: function(data){ 
+                            $.each(data, function( index, value ) {
+                               var row = $("<tr><td>" + value.city + "</td><td>" + value.cStatus + "</td></tr>");
+                               $("#myData").append(row);
+                            });
+                        },
+                        error: function(jqXHR, textStatus, errorThrown){
+                            alert('error: ' + textStatus + ': ' + errorThrown);
+                        }
+                    });
+                    return false;//suppress natural form submission
+                }); 
+
+   </script>
+</body>
+</html>
