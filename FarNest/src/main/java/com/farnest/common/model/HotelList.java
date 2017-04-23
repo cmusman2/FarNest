@@ -14,7 +14,7 @@ public class HotelList {
   private String activepropertycount;
   private List<HotelSummary> hotelSummaries;
   
-  //@XmlElement(name="hotelsummary")
+  @XmlElement(name="hotelsummary")
   public List<HotelSummary> getHotelSummaries() {
 	return hotelSummaries;
 }

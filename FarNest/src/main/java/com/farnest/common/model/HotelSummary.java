@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+/*
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Hotel", propOrder = {
  "hotelid",
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  "postalCode",
  "thumbNail",
  "rate"
-})
+})*/
 
 
 @XmlRootElement(name = "hotelsummary")
@@ -67,7 +68,8 @@ public void setPostalcode(String postalcode) {
 	this.postalcode = postalcode;
 }
 @XmlElement
-public String getThumbnailurl() {
+public String getThumbnailurl() {	
+	if (!thumbnailurl.isEmpty()) thumbnailurl = thumbnailurl.replace("_t.", "_l.");
 	return thumbnailurl;
 }
 

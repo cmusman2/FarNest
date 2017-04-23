@@ -60,6 +60,8 @@ try
 	  JAXBContext jc = JAXBContext.newInstance(HotelResponse.class);
       Unmarshaller unmarshaller = jc.createUnmarshaller();
       HotelResponse hotelResponse = (HotelResponse)JAXBIntrospector.getValue( unmarshaller.unmarshal(sr));
+      if(hotelResponse!=null && hotelResponse.getHotelList()!=null)
+      return hotelResponse.getHotelList().getHotelSummaries();
       
       sr.close();
 }catch(Exception exp)
