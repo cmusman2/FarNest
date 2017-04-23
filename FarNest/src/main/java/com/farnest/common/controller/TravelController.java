@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.farnest.common.dao.ServiceDao;
+import com.farnest.common.dao.WSServiceDaos;
 import com.farnest.common.domain.HotelSearch;
 import com.farnest.common.model.Hotel;
 import com.farnest.common.model.HotelSummary;
@@ -184,35 +185,20 @@ public class TravelController {
 	public   ModelAndView searchdo(ModelAndView mv,@ModelAttribute("searchForm")  HotelSearch hotelSearch, BindingResult bindingResult)
 	{		
 		HotelSummaryList hs = new HotelSummaryList();
-		
-		HotelSummary h= new HotelSummary();
-		h.setName("Marriott Manchester, Downtown");
-		h.setAddress1("In the city center");
-		h.setLowRate("325.55");
-		h.setThumbNail("/hotels/2000000/1900000/1897400/1897390/1897390_4_l.jpg");
-		hs.getHotels().add(h);
-		
-		h= new HotelSummary();
-		h.setName("Crown plaza City Center");
-		h.setAddress1("Water front");
-		h.setLowRate("125.80");
-		h.setThumbNail("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
-		hs.getHotels().add(h);		
-		
-		h= new HotelSummary();
-		h.setName("Crown plaza City Center");
-		h.setAddress1("Water front");
-		h.setLowRate("125.80");
-		h.setThumbNail("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
-		hs.getHotels().add(h);		
+		List<HotelSummary> hotels=null;
+		try
+		{
+		   hotels = WSServiceDaos.Hotels(hotelSearch.getCityAjaxH(), hotelSearch.getSDATEH(), 1);
+		}catch(Exception exp)
+		{
+			
+		}
 		
 		
 		System.out.println(hotelSearch.getCityAjaxH());
-        /*mv.setViewName("htlList");
-		mv.addObject("htlList", hs); 
-		mv.addObject("destination", hotelSearch.getCityAjaxH());*/
-		mv.setViewName("htlDisplay3");
-		mv.addObject("htlList", hs); 
+        
+		mv.setViewName("htlDisplay3");		
+		mv.addObject("hotels",hotels);
 		return mv;
 
 	}

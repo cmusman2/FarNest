@@ -109,7 +109,7 @@ function encode(value){
 			<td colspan="6" class="resultheading">Search results</td>
 		</tr>
 	 				
-		<c:forEach items="${htlList.getHotels()}" var="htl">
+		<c:forEach items="${hotels}" var="htl">
 			<tr>
 				<td colspan="6" class="htlname"><a href="displayHotel/${htl.name}">${htl.name}</a></td>
 			</tr> 
@@ -119,8 +119,8 @@ function encode(value){
 						<tr>
 							<td width="1%" valign="top"  htmlEscape="true" escapeXml="true" >
 							
-							<c:if test='${not empty "${htl.thumbNail}"}'>
-									<img src="http://media.expedia.com${htl.thumbNail}" alt="" />
+							<c:if test='${not empty "${htl.thumbnailurl}"}'>
+									<img src="http://media.expedia.com${htl.thumbnailurl}" alt="" />
 								</c:if></td>
                              <td align="left" valign="top" style="padding-left:5px">
                              
@@ -129,8 +129,8 @@ function encode(value){
 									  
 								</c:if>
 								
-                             <c:if test='${not empty "${htl.locationDescription}"}'>                                  
-									<c:out value="${htl.locationDescription}"/>
+                             <c:if test='${not empty "${htl.locationdescription}"}'>                                  
+									<c:out value="${htl.locationdescription}"/>
 									<br/>
 								</c:if>
                              
@@ -139,20 +139,20 @@ function encode(value){
 									<br/>
 								</c:if>
 
-                             <c:if test='${not empty "${htl.postalCode}"}'>                                    
-									${htl.postalCode}
+                             <c:if test='${not empty "${htl.postalcode}"}'>                                    
+									${htl.postalcode}
 									<br/>
 								</c:if>
 
-                             <c:if test='${not empty "${htl.countryCode}"}'>                                    
-									${htl.countryCode}
+                             <c:if test='${not empty "${htl.countrycode}"}'>                                    
+									${htl.countrycode}
 									<br/>
 								</c:if>
 								
 								
-                             <c:if test='${not empty "${htl.shortDescription}"}'>
+                             <c:if test='${not empty "${htl.shortdescription}"}'>
                                   <p style="font-size:10pt">
-                                    <script>var v= $('<div/>').html('${htl.shortDescription}').text();document.write(v);</script>...
+                                    <script>var v= $('<div/>').html('${htl.shortdescription}').text();document.write(v);</script>...
 								  </p>	
 								</c:if>								
 								
@@ -160,7 +160,7 @@ function encode(value){
 
 							 
 							 
-							<td align="right"><span  class="price">${htl.rateCurrencyCode}&nbsp;${htl.lowRate}</span>
+							<td align="right"><span  class="price">${htl.ratecurrencycode}&nbsp;${htl.lowrate}</span>
 							 <br/>
 							 <span class="selectbtn"><a href="#">See&nbsp;details</a></span>
 							</td>

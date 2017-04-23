@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlType;
  "rate"
 })
 
-@Entity
-@Table(name="hotels")
-@XmlRootElement(name = "hotel")
+
+@XmlRootElement(name = "hotelsummary")
 public class HotelSummary implements Serializable {
+	@XmlElement
 	public int getHotelid() {
 		return hotelid;
 	}
@@ -41,66 +41,101 @@ public class HotelSummary implements Serializable {
 		this.hotelid = hotelid;
 	}
 
-	@Id
- @GeneratedValue
+
  protected int hotelid;
- @XmlElement(required = true)
+
  protected String name;
- @XmlElement(required = true)
+
  protected String address1;
- @XmlElement(required = true)
+
  protected String address2;
- @XmlElement(required = true)
- protected String postalCode;
- @XmlElement(required = true)
- protected String thumbNail;
- @XmlElement(required = true)
- protected String lowRate;
- 
- @XmlElement(required = true)
- protected String locationDescription;
 
- @XmlElement(required = true)
- protected String countryCode;
- 
- @XmlElement(required = true)
- protected String rateCurrencyCode;
- 
- 
- 
- public String getRateCurrencyCode() {
-		return rateCurrencyCode;
-	}
+ protected String postalcode;
 
-	public void setRateCurrencyCode(String rateCurrencyCode) {
-		this.rateCurrencyCode = rateCurrencyCode;
-	}
+ protected String thumbnailurl;
 
-	@XmlElement(required = true)
- protected String shortDescription;
- 
+ protected String lowrate;
  
 
- public String getShortDescription() {
-		return shortDescription;
-	}
+ protected String locationdescription;
 
-	public void setShortDescription(String shortDescription) {
-		this.shortDescription = shortDescription;
-	}
+ public String getPostalcode() {
+	return postalcode;
+}
 
-	public String getCountryCode() {
-		return countryCode;
-	}
+public void setPostalcode(String postalcode) {
+	this.postalcode = postalcode;
+}
+@XmlElement
+public String getThumbnailurl() {
+	return thumbnailurl;
+}
 
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
+public void setThumbnailurl(String thumbnailurl) {
+	this.thumbnailurl = thumbnailurl;
+}
+@XmlElement
+public String getLowrate() {
+	return lowrate;
+}
 
-	@XmlElement(required = true)
+public void setLowrate(String lowrate) {
+	this.lowrate = lowrate;
+}
+@XmlElement
+public String getLocationdescription() {
+	return locationdescription;
+}
+
+public void setLocationdescription(String locationdescription) {
+	this.locationdescription = locationdescription;
+}
+@XmlElement
+public String getCountrycode() {
+	return countrycode;
+}
+
+public void setCountrycode(String countrycode) {
+	this.countrycode = countrycode;
+}
+@XmlElement
+public String getRatecurrencycode() {
+	return ratecurrencycode;
+}
+
+public void setRatecurrencycode(String ratecurrencycode) {
+	this.ratecurrencycode = ratecurrencycode;
+}
+
+
+ protected String countrycode;
+ 
+
+ protected String ratecurrencycode;
+ 
+ 
+  
+
+
+ protected String shortdescription;
+ 
+
+
+ 
+ @XmlElement
+	public String getShortdescription() {
+	return shortdescription;
+}
+
+public void setShortdescription(String shortdescription) {
+	this.shortdescription = shortdescription;
+}
+
+
+	
  protected String city;
  
- 
+	@XmlElement
  public String getCity() {
 		return city;
 	}
@@ -108,15 +143,7 @@ public class HotelSummary implements Serializable {
 	public void setCity(String city) {
 		this.city = city;
 	}
-
-	public String getLocationDescription() {
-		return locationDescription;
-	}
-
-	public void setLocationDescription(String locationDescription) {
-		this.locationDescription = locationDescription;
-	}
-
+ 
 
  /**
   * Gets the value of the name property.
@@ -126,6 +153,7 @@ public class HotelSummary implements Serializable {
   *     {@link String }
   *     
   */
+	@XmlElement
  public String getName() {
      return name;
  }
@@ -150,6 +178,7 @@ public class HotelSummary implements Serializable {
   *     {@link String }
   *     
   */
+ @XmlElement
  public String getAddress1() {
      return address1;
  }
@@ -174,6 +203,7 @@ public class HotelSummary implements Serializable {
   *     {@link String }
   *     
   */
+ @XmlElement
  public String getAddress2() {
      return address2;
  }
@@ -190,77 +220,9 @@ public class HotelSummary implements Serializable {
      this.address2 = value;
  }
 
- /**
-  * Gets the value of the postalCode property.
-  * 
-  * @return
-  *     possible object is
-  *     {@link String }
-  *     
-  */
- public String getPostalCode() {
-     return postalCode;
- }
 
- /**
-  * Sets the value of the postalCode property.
-  * 
-  * @param value
-  *     allowed object is
-  *     {@link String }
-  *     
-  */
- public void setPostalCode(String value) {
-     this.postalCode = value;
- }
 
- /**
-  * Gets the value of the thumbNail property.
-  * 
-  * @return
-  *     possible object is
-  *     {@link String }
-  *     
-  */
- public String getThumbNail() {
-     return thumbNail;
- }
-
- /**
-  * Sets the value of the thumbNail property.
-  * 
-  * @param value
-  *     allowed object is
-  *     {@link String }
-  *     
-  */
- public void setThumbNail(String value) {
-     this.thumbNail = value;
- }
-
- /**
-  * Gets the value of the rate property.
-  * 
-  * @return
-  *     possible object is
-  *     {@link String }
-  *     
-  */
- public String getLowRate() {
-     return lowRate;
- }
-
- /**
-  * Sets the value of the rate property.
-  * 
-  * @param value
-  *     allowed object is
-  *     {@link String }
-  *     
-  */
- public void setLowRate(String value) {
-     this.lowRate = value;
- }
+ 
 
  @Override
  public String toString() {
@@ -269,9 +231,9 @@ public class HotelSummary implements Serializable {
       +"|"+name
       +"|"+address1 
       +"|"+address2 
-      +"|"+postalCode 
-      +"|"+thumbNail 
-      +"|"+lowRate;
+      +"|"+postalcode 
+      +"|"+thumbnailurl 
+      +"|"+lowrate;
      
  }    
  
