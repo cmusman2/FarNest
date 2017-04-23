@@ -9,50 +9,7 @@
 
   
   
-    
-    
-    
- 	<http pattern="/getHotels*" auto-config="true">
-		<intercept-url pattern="/getHotels*"
-			access="ROLE_USER" />
-		<http-basic/>
-	</http>
-	
-	<security:http pattern="/hotels*" auto-config="true">
-		<security:intercept-url pattern="/hotels*" access="ROLE_USER" />
-		<custom-filter ref="digestFilter" after="BASIC_AUTH_FILTER" />
-	</security:http>
-	
-		<beans:bean id="digestFilter"
-		class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter">
-		<beans:property name="userDetailsService" ref="localUserDetailService" />
-		<beans:property name="authenticationEntryPoint" ref="digestEntryPoint" />
-	</beans:bean>
-
-	<beans:bean id="digestEntryPoint"
-		class="org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint">
-		<beans:property name="realmName"
-			value="DigestRealm" />
-		<beans:property name="key" value="acegi" />
-	</beans:bean>
-	
- <authentication-manager>
-    <authentication-provider>
-      <user-service id="fixedUserDetailService">
-        <user name="tes" password="passw0rd" authorities="ROLE_USER, ROLE_ADMIN" />
-        <user name="bob" password="bobspassword" authorities="ROLE_USER" />
-      </user-service>
-    </authentication-provider>
-  </authentication-manager>
-      
-    
-    
-    
-    
     <!-- basic authentication security-->	
-    
-    
-    <!-- 
 	<http pattern="/getHotels*" auto-config="true" authentication-manager-ref="authmanager">
 		<intercept-url pattern="/getHotels*"
 			access="ROLE_USER" />
@@ -60,14 +17,15 @@
 	</http>
 	 
 
-    
+    <!-- digest authentication security-->	
 	<security:http pattern="/hotels*" auto-config="true" authentication-manager-ref="authmanager"  entry-point-ref="myDigestAuthenticationEntryPoint">
 		<security:intercept-url pattern="/hotels*" access="ROLE_USER" />
 		<custom-filter ref="digestFilter" after="BASIC_AUTH_FILTER" />
 	</security:http>
 	
 	
- 
+	<!-- form login security-->	
+	<!-- 
 	<security:http auto-config="true" authentication-manager-ref="authmanager">
 
 		<security:intercept-url pattern="/displayHotel*"
@@ -83,7 +41,7 @@
 		
 		
 	</security:http>	
-	 
+	-->
 
 	<beans:bean id="digestFilter"
 		class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter">
@@ -116,6 +74,15 @@
 		
 		</security:authentication-provider> 
 </security:authentication-manager> 
--->
 
+ <!-- 
+ <authentication-manager>
+    <authentication-provider>
+      <user-service>
+        <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+        <user name="bob" password="bobspassword" authorities="ROLE_USER" />
+      </user-service>
+    </authentication-provider>
+  </authentication-manager>
+  -->
 </beans:beans>

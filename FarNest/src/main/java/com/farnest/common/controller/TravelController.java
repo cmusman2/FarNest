@@ -4,22 +4,23 @@ import java.util.List;
 
 
 import org.hibernate.Session;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.farnest.common.dao.ServiceDao;
 import com.farnest.common.domain.HotelSearch;
 import com.farnest.common.model.Hotel;
+import com.farnest.common.model.HotelSummary;
+import com.farnest.common.model.HotelSummaryList;
 import com.farnest.common.model.Hotels;
 
-@Controller
+@RestController
 @RequestMapping("/")
 public class TravelController {
 	
@@ -27,7 +28,7 @@ public class TravelController {
 	
 	
 	@RequestMapping(value = "/hotels", method = RequestMethod.GET)
-	public @ResponseBody Hotels getHotels()
+	public  Hotels getHotels()
 	{
 		//logger.debug("hotels request received....");
 		
@@ -45,7 +46,7 @@ public class TravelController {
 	}
 	
 	@RequestMapping(value = "/displayHotel", method = RequestMethod.GET)
-	public @ResponseBody ModelAndView displayHotel()
+	public   ModelAndView displayHotel()
 	{
 		
        Session session = ServiceDao.getSessionFactory().openSession();
@@ -68,7 +69,7 @@ public class TravelController {
 	}
 	
 	@RequestMapping(value = "/displayHotel/{name}", method = RequestMethod.GET)
-	public @ResponseBody ModelAndView displayHotelDetail(ModelAndView mv, @PathVariable("name") String name)
+	public  ModelAndView displayHotelDetail(ModelAndView mv, @PathVariable("name") String name)
 	{
 		
        Session session = ServiceDao.getSessionFactory().openSession();
@@ -91,7 +92,7 @@ public class TravelController {
 	}
 	
 	@RequestMapping(value = "/getHotels", method = RequestMethod.GET)
-	public @ResponseBody Hotels displayHotelsDB()
+	public   Hotels displayHotelsDB()
 	{
 		
 		Session session = ServiceDao.getSessionFactory().openSession();
@@ -105,7 +106,7 @@ public class TravelController {
 	}
 	
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public @ResponseBody ModelAndView hotelUpdate(ModelAndView mv, @RequestParam("id") String id)
+	public   ModelAndView hotelUpdate(ModelAndView mv, @RequestParam("id") String id)
 	{		
 		Session session = ServiceDao.getSessionFactory().openSession();
 		
@@ -126,7 +127,7 @@ public class TravelController {
 	
 	
 	@RequestMapping(value = "/hotel/{id}")
-	public @ResponseBody ModelAndView hotelDetails(ModelAndView mv, @RequestParam("id") String id)
+	public   ModelAndView hotelDetails(ModelAndView mv, @RequestParam("id") String id)
 	{		
 		Session session = ServiceDao.getSessionFactory().openSession();
 		
@@ -144,8 +145,8 @@ public class TravelController {
 
 	}	
 	
-	@RequestMapping(value = "/searchdo", method = RequestMethod.POST)
-	public @ResponseBody Hotels searchdo(@ModelAttribute("searchForm")  HotelSearch hotelSearch, BindingResult bindingResult)
+	@RequestMapping(value = "/searchdoorig", method = RequestMethod.POST)
+	public   Hotels searchdoorig(@ModelAttribute("searchForm")  HotelSearch hotelSearch, BindingResult bindingResult)
 	{		
 		Hotels hs = new Hotels();
 		
@@ -179,5 +180,40 @@ public class TravelController {
 
 	}
 		
-	
+	@RequestMapping(value = "/searchdo", method = RequestMethod.POST)
+	public   ModelAndView searchdo(ModelAndView mv,@ModelAttribute("searchForm")  HotelSearch hotelSearch, BindingResult bindingResult)
+	{		
+		HotelSummaryList hs = new HotelSummaryList();
+		
+		HotelSummary h= new HotelSummary();
+		h.setName("Marriott Manchester, Downtown");
+		h.setAddress1("In the city center");
+		h.setLowRate("325.55");
+		h.setThumbNail("/hotels/2000000/1900000/1897400/1897390/1897390_4_l.jpg");
+		hs.getHotels().add(h);
+		
+		h= new HotelSummary();
+		h.setName("Crown plaza City Center");
+		h.setAddress1("Water front");
+		h.setLowRate("125.80");
+		h.setThumbNail("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
+		hs.getHotels().add(h);		
+		
+		h= new HotelSummary();
+		h.setName("Crown plaza City Center");
+		h.setAddress1("Water front");
+		h.setLowRate("125.80");
+		h.setThumbNail("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
+		hs.getHotels().add(h);		
+		
+		
+		System.out.println(hotelSearch.getCityAjaxH());
+        /*mv.setViewName("htlList");
+		mv.addObject("htlList", hs); 
+		mv.addObject("destination", hotelSearch.getCityAjaxH());*/
+		mv.setViewName("htlDisplay3");
+		mv.addObject("htlList", hs); 
+		return mv;
+
+	}
 }

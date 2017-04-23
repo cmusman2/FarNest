@@ -1,33 +1,49 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+    
+<spring:htmlEscape defaultHtmlEscape="true" /> 
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Search</title>
-<link type="text/css" rel="stylesheet" href="resources/css/styles.css"
-	media="all" />
-	
-	<style>
-.searchPane{background:url(resources/images/27528_351_z.jpg); background-size: cover;}
+<title>Hotels list</title>
+<link type="text/css" rel="stylesheet" href="resources/css/styles.css" media="all"/>
 
-	.xtable {
-    background:url('resources/images/27528_351_z.jpg');
-    background-repeat:no-repeat;
-    background-position:center center;
-    width:180px; 
-    height:200px;
-    border:1px solid black;
-    width:180px; 
-    height:200px;   
-    }
-	</style>
+
+  
+<script>
+function encode(value){
+	alert(value);
+	
+	//return value;
+	  return $('<div/>').text(value).html();
+	}
+
+	function decode(value){
+		alert(value);
+		//return value;
+	  return $('<div/>').html(value).text();
+	}
+</script>
 </head>
-<body>
+<body>	
+	<table>
+		<tr>
+			<td colspan="6" class="test"><spring:message
+					code="hotel.search.results" text="Hotels in" /> ${destination}</td>
+		</tr>
+		<tr>
+		  <td colspan="6" style="background-color:#eee">
+		  
+<form:form method="POST" action="searchdo" commandName="searchForm">
 
-	
-<form id="searchForm" action="searchdo" method="POST">
-<div>
-	<table class="searchPane">
+<table class="searchPane" style="background:#eee">
 		<tr>
 			<td colspan="2">Search</td>
 		</tr>
@@ -84,10 +100,102 @@
 			<td colspan="2"><input type="submit" value="Search" align="middle"></td>
 		</tr>		
 	</table>
-	</div>
-	</form>
+	</form:form>
+		  
+		  </td>
+		</tr>
+		
+		<tr>
+			<td colspan="6" class="resultheading">Search results</td>
+		</tr>
+	 				
+		<c:forEach items="${htlList.getHotels()}" var="htl">
+			<tr>
+				<td colspan="6" class="htlname"><a href="displayHotel/${htl.name}">${htl.name}</a></td>
+			</tr> 
+			<tr>
+				<td colspan="6" valign="top">
+					<table cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="1%" valign="top"  htmlEscape="true" escapeXml="true" >
+							
+							<c:if test='${not empty "${htl.thumbNail}"}'>
+									<img src="http://media.expedia.com${htl.thumbNail}" alt="" />
+								</c:if></td>
+                             <td align="left" valign="top" style="padding-left:5px">
+                             
+                             <c:if test='${not empty "${htl.address1}"}'>                                    
+									${htl.address1} 
+									  
+								</c:if>
+								
+                             <c:if test='${not empty "${htl.locationDescription}"}'>                                  
+									<c:out value="${htl.locationDescription}"/>
+									<br/>
+								</c:if>
+                             
+                             <c:if test='${not empty "${htl.city}"}'>                                    
+									${htl.city}
+									<br/>
+								</c:if>
+
+                             <c:if test='${not empty "${htl.postalCode}"}'>                                    
+									${htl.postalCode}
+									<br/>
+								</c:if>
+
+                             <c:if test='${not empty "${htl.countryCode}"}'>                                    
+									${htl.countryCode}
+									<br/>
+								</c:if>
+								
+								
+                             <c:if test='${not empty "${htl.shortDescription}"}'>
+                                  <p style="font-size:10pt">
+                                    <script>var v= $('<div/>').html('${htl.shortDescription}').text();document.write(v);</script>...
+								  </p>	
+								</c:if>								
+								
+                             </td>
+
+							 
+							 
+							<td align="right"><span  class="price">${htl.rateCurrencyCode}&nbsp;${htl.lowRate}</span>
+							 <br/>
+							 <span class="selectbtn"><a href="#">See&nbsp;details</a></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right">
+							<!-- 
+							<form action="update/${htl.name}" method="POST">
+									<input type="hidden" name="id" id="id" value="${htl.hotelid}" /><input
+										type="submit"
+										value="<spring:message code="button.details" text="See details" />" />
+								</form>
+								-->
+								</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		    <tr>
+			<td colspan="6" style="border-color:#1e90ff;border-width:10pt">&nbsp;</td>
+		    </tr>	
+
+		</c:forEach>
+<!-- 
+		<tr>
+			<td colspan="3" class="test" align="right"><input type="button"
+				value="Add a new hotel"></td>
+			<td colspan="3" class="test"><input type="button"
+				value="Just a button"></td>
+		</tr>
+		-->
+	</table>
 	
 	<script type="text/javascript" src="resources/scripts/development-bundle/jquery-1.6.2.js"></script>  <script type="text/javascript" src="resources/scripts/development-bundle/ui/jquery.ui.core.js"></script>  <script type="text/javascript" src="resources/scripts/development-bundle/ui/jquery.ui.datepicker.js"></script>  <script type="text/javascript" src="resources/scripts/development-bundle/jquery.autocomplete.js"></script>  <script type="text/javascript" src="resources/scripts/utils.js"></script> <script type="text/javascript" src="resources/scripts/js.js"></script> <script type="text/javascript" src="resources/scripts/utilsp.js"></script>
 <script type="text/javascript">    $(function() {  var dates = $( "#from" ).datepicker({  defaultDate: "+1w",  showOn: "both",  changeMonth: true,  buttonImageOnly: true,  numberOfMonths: 2,  dateFormat:'dd/mm/y',  onSelect: function( selectedDate ) {  var option = this.id == "from" ? "minDate" : "maxDate",  instance = $( this ).data( "datepicker" ),  date = $.datepicker.parseDate(  instance.settings.dateFormat ||  $.datepicker._defaults.dateFormat,  selectedDate, instance.settings );  dates.not( this ).datepicker( "option", option, date );  }  });  });     function findValue(li) {  if( li == null ) return alert("No match!");     if( !!li.extra ) var sValue = li.extra[0];     else var sValue = li.selectValue;  if (document.getElementById('CityAjaxH2')!=null){  document.getElementById('CityAjaxH2').value = li.extra[1];  }    }    function selectItem(li) {  findValue(li);  }    function formatItem(row) {  /*document.getElementById('destid').value = '';*/  if (document.getElementById('CityAjaxH2')!=null){  document.getElementById('CityAjaxH2').value = '';  }  return row[1] ;  }    function lookupAjax(){  var oSuggest = $("#CityAjaxH")[0].autocompleter;  oSuggest.findValue();  return false;  }    function lookupLocal(){  var oSuggest = $("#CityLocal")[0].autocompleter;  oSuggest.findValue();    return false;  }  $("#CityAjaxH").autocomplete(  "http://lowestroomrates.com/src/autocomplete.php",  {  delay:10,  minChars:3,  matchSubset:1,  matchContains:3,  cacheLength:0,  onItemSelect:selectItem,  onFindValue:findValue,  formatItem:formatItem,  autoFill:false  }  );     </script> 
+	
 </body>
 </html>

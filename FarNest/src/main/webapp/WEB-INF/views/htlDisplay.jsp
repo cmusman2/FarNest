@@ -25,15 +25,15 @@
             <td>${htl.address2}</td>
             <td>${htl.rate}</td>
             
-            <td><form action="update/${htl.id}" method="POST"><input type="hidden" name="id" id="id" value="${htl.id}" /><input type="submit" value="<spring:message code="button.update" text="Update" />"/></form></td>
-            <td><form action="delete/${htl.id}" method="POST"><input type="hidden" name="id" id="id" value="${htl.id}" /><input type="submit" value="<spring:message code="button.delete" text="Delete" />"/></form></td>
+            <td><form action="update?${htl.id}" method="POST"><input type="hidden" name="id" id="id" value="${htl.id}" /><input type="submit" value="<spring:message code="button.update" text="Update" />"/></form></td>
+            <td><form action="delete?${htl.id}" method="POST"><input type="hidden" name="id" id="id" value="${htl.id}" /><input type="submit" value="<spring:message code="button.delete" text="Delete" />"/></form></td>
          </tr>		
         		
 	</c:forEach>
 	
     <tr>  
-      <td colspan="3" class="test" align="right"><input type="button" value="Add a new hotel"></td>   
-      <td colspan="3" class="test"><input type="button" value="Just a button"></td> 
+      <td colspan="3" class="test" align="right"><form action="add" method="POST"><input type="submit" value="<spring:message code="button.add" text="Add hotel" />"/></form></td>   
+      <td colspan="3" class="test"><form action="../SpringMVC" method="GET"><input type="submit" value="Home"></form></td> 
     </tr>	
 	</table>
 </body>

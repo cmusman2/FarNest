@@ -1,0 +1,783 @@
+body
+{
+	margin:0;
+	padding:0;
+	font-family:arial;
+	font-weight:normal;
+	color:#333;
+	font-size:10pt;
+
+}
+
+a{
+	text-decoration:none;
+	color:#0c3d72;
+}
+
+
+a:hover{
+	color:#00f;
+	text-decoration:underline;
+}
+
+
+img{
+    border-width:0;
+}
+
+
+div.table {display: table; }
+div.tr {display: table-row; text-align:left;}
+div.td {display: table-cell; text-align:left;}
+div.trl {display: table-row; background-color:#0c3d72;height:50px;}
+
+div.tablefleft {display: table; width:100%;margin-left:auto;margin-right:auto;float:left;}
+div.trp {display: table-row; text-align:center;}
+div.tdp {display: table-cell; text-align:left;padding:2px;}
+
+.menu{
+}
+
+.menu a{
+	color:#fff;
+}
+.menu a:hover{
+	color:#fff;
+}
+
+.menu ul{
+	list-style-type:none;
+}
+
+.menu li{
+	list-style-type:none;
+	padding-left:69px;
+	padding-top:20px;
+	float:left;	
+}
+
+.defmenu{
+	list-style-type:none;
+	padding-left:10px;
+	float:left;	
+}
+
+
+.mmitem{
+	font-size:15px;
+	font-weight:bold;
+	padding-left:10px;
+
+}
+
+.promisesubheading{
+    	font-size:12pt;
+    	font-weight:bold;
+    	color:#222;
+    	text-decoration:none;
+    	vertical-align:top;
+    	position:relative;
+    	top:5px;
+    	display: block;
+    	margin-left:0px;
+    	margin-right:0px;
+
+}
+
+.promisesubheading2{
+    	font-size:11pt;
+    	color:#222;
+
+}
+
+.search {
+	background-color: #fff;
+
+	width: 430px;
+	margin: 0 auto 15px auto;
+	padding: 10px;
+
+	border: 1px solid #ccc;
+    	font-size:10pt;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.promiseh{
+    font-size:15pt;
+    font-weight:bold;
+    color:#000;
+    text-decoration:none;
+    vertical-align:top;
+    position:relative;
+    top:5px;
+    display: block;
+    margin-left:0px;
+    margin-right:0px;
+}
+
+.date-input{
+	width: 150px;
+	size:11;
+    	background:#FFF url(../images/calendarn.gif) no-repeat 127px -2px;	
+    	padding:-1px 4px 4px 22px;
+    	height:20px;
+	cursor:pointer;
+
+}
+.date-input2{
+	width: 150px;
+	size:11;
+    	background:#FFF url(../../images/calendarn.gif) no-repeat 127px -2px;	
+    	padding:-1px 4px 4px 22px;
+    	height:20px;
+	cursor:pointer;
+
+}
+
+a.testbuttonx, a.testbuttonx:visited 
+{   
+	display:block;   
+	background: url(../images/simple_button.png) repeat-x;   
+	width: 150px;
+	height:18px;  
+	padding:10px 0;   
+	padding-top:2px;
+	text-align:center;   
+
+	border:1px solid #608925;   
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);   
+   
+	font-size:14pt;
+  
+	border-radius: 5px;   
+	-moz-border-radius: 5px;   
+	-webkit-border-radius: 5px;   
+	color:#FFF;   
+	text-decoration: none;   
+	opacity:.85;   
+}   
+  
+a.testbuttonx:hover {   
+	border-color:#49671d;   
+}   
+  
+a.testbuttonx:active {   
+	background: url(../images/simple_button.png) repeat-x; 
+	background-position:  0 -200px;   
+	padding:11px 0 9px;   
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8); 
+	width: 150px;
+	height:18px;  
+	padding:10px 0;   
+	padding-top:2px;
+	font-size:14pt;  
+} 
+
+
+a.testbutton, a.testbutton:visited {   
+display:block;   
+background: #1e90ff;  
+  
+padding:2px;
+
+text-align:center;   
+width:120px; 
+   
+font-size:14pt;
+    
+color:#FFF;   
+text-decoration: none;  
+
+	border-radius: 5px;   
+	-moz-border-radius: 5px;   
+	-webkit-border-radius: 5px;  
+	-o-border-radius: 5px;  
+	border-radius: 5px;     
+ 
+}   
+  
+a.testbutton:hover {   
+background-color:#0174DF;   
+}
+
+
+
+div.hvtable {display: table; width:1100px;margin-left:auto;margin-right:auto;
+width:500px;border-top: #999 1px solid;border-bottom: #999 1px solid;border-left: #999 1px solid;border-right: #999 1px solid;}
+#rvh{
+	display:none;
+}
+
+.htltypetitle{
+    font-size:11pt;
+    color:#1a90ff;    
+    padding:5px;
+    list-style-type:square;
+    float:left 	;
+}
+
+.htltypetitle2{
+    font-size:11pt;
+    color:#1a90ff;
+    padding:5px;   
+    list-style-type:square;
+    float:left 	;
+}
+
+
+
+a.htltypetitle:hover
+{
+	text-decoration:underline;
+
+}
+
+.offer34{
+	font-size:15px;
+	color:#DF0101;
+	
+	
+}
+
+.bott{
+    float:left;
+
+}
+
+.optr5{
+	
+	
+	margin-top:350px;
+	margin-left:850px;
+	position:absolute;
+	background-color:#B40404;
+	padding:5px;
+	
+	font-size:12pt;
+	font-weight:bold;
+	color:#fff;
+	vertical-align:middle;
+	
+	opacity:0.6;
+	filter:alpha(opacity=60);
+}
+
+
+.optr5 a{
+	color:#fff;
+}
+
+
+
+.optr5 a:hover{
+	color:#00f;
+}
+
+
+ul{
+        list-style: none;
+		padding: 0;
+		margin: 0;
+}
+
+	li {
+	    list-style: none;
+	    list-style-position:inside;
+	}
+	
+	lif {
+	    list-style: none;
+	    float: left;
+	}	
+	lir {
+	    float: right;
+	}
+	
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;	
+	}
+	
+	 .ulright{
+	    float: right;
+		list-style: none;
+		padding: 0;
+		margin: 0;	
+	}
+	
+
+.ac_results {
+	padding: 0px;
+	border: 1px solid #7FB7FB;
+	overflow: hidden;
+  background-color: #fff;z-index:500;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results iframe {
+	display:none;/*sorry for IE5*/
+	display/**/:block;/*sorry for IE5*/
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	filter:mask();
+	width:3000px;
+	height:3000px;
+  
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	font: menu;
+	font-size: 12px;
+	overflow: hidden;
+  
+}
+
+.ac_loading {
+	/*background :  url('img/loader.gif') right center no-repeat;*/
+}
+
+.ac_over {
+	background-color: white;
+	color: black;
+}
+
+
+#paxurl{
+ display:block;
+ float:left;
+}
+
+#paxrooms,#paxpax,#updatebtnpax{
+ display:none;
+}
+
+
+
+.bookopt{
+	background-color:#608925;
+	color:#fff;
+	font-size:10pt;
+	font-weight:bold;
+	display:block;
+	text-align:center;
+	padding:5px;
+}
+
+
+.bre{
+	background-color:#608925;
+	color:#fff;
+	font-size:12pt;
+	font-weight:bold;
+	display:block;
+	text-align:center;
+	padding:5px;
+
+	-moz-border-radius: 5px;   
+	-webkit-border-radius: 5px;  
+	-o-border-radius: 5px;  
+	border-radius: 5px;     
+}
+
+.headoptsm{
+	text-align:center;
+	top:-65px;
+	position:relative;
+	font-weight:bold;
+	font-size:10pt;
+	background:#222;
+	color:#fff;
+	width:100px;
+	left:15px;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+
+
+}
+
+.headoptsm a{color:#fff;}
+.headoptsm a:hover{color:#00f;}
+
+
+.headoptsmimg{
+	-o-border-radius: 5px; 
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+
+}
+
+.secreteslink{
+font-size:12pt;font-weight:bold;background:#1e90ff;color:#fff;padding:10px;
+}
+
+.beachopts{
+font-size:10pt;font-weight:bold;top:0px;background:#DF3A01;position:relative;color:#fff;padding:5px;text-align:center;
+}
+
+.beachopts a{color:#fff;}
+.beachopts a:hover{color:#00f;}
+
+
+
+.roundit{
+
+	position: absolute;
+	border-radius: 5px;   
+	-moz-border-radius: 5px;   
+	-webkit-border-radius: 5px;  
+	-o-border-radius: 5px;  
+	border-radius: 5px;     
+	/*border:1px solid #ccc; padding:2px; background:#eee;*/
+}
+
+.roundit2{
+
+	
+	border-radius: 5px;   
+	-moz-border-radius: 5px;   
+	-webkit-border-radius: 5px;  
+	-o-border-radius: 5px;  
+	border-radius: 5px;     
+	/*border:1px solid #ccc; padding:2px; */
+}
+
+
+.rounditmenu{
+
+	background-color:#0c3d72;
+	border-radius: 5px;   
+	-moz-border-radius: 5px;   
+	-webkit-border-radius: 5px;  
+	-o-border-radius: 5px;  
+	border-radius: 5px;     
+	
+}
+
+input {
+    /* round the corners */
+    border-radius: 2px;
+    border: 1px solid #ccc;
+   
+    /*border: 1px solid #4195fc;*/ 
+}
+
+
+input[type="checkbox"], 
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+
+input.checkbox {
+    height:1.9em;
+    padding:0;
+
+}
+
+
+
+input:focus { 
+    outline:none;
+ border: 1px solid #4195fc;    
+}
+
+.blur { 
+    border: 1px solid #f00; 
+}
+
+select {
+   padding: .1em;
+   font-size: 1em;
+   border: .1em solid #ccc;
+   height: 1.7em;
+   font-weight:normal;	
+   width:150px;	
+} 
+
+.styled{
+   height: 2em;
+   overflow: hidden;   
+}
+/*
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+src='images/logo.gif',
+sizingMethod='scale');
+
+-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(
+src='images/logo.gif',
+sizingMethod='scale')";
+*/
+
+.mainpopdest{
+	font-weight:bold;
+}
+
+.mainpopdest img{
+	height:80px;
+	width:130px;
+	position: relative;
+	border-radius: 5px;   
+	-moz-border-radius: 5px;   
+	-webkit-border-radius: 5px;  
+	-o-border-radius: 5px;  
+	border-radius: 5px;     
+	border:1px solid #ccc; padding:2px; background:#eee;
+	cursor:pointer;
+}
+
+.mainpopdest a{
+	color:#1e90ff;
+}
+.mainpopdest p{
+	font-style:italic;
+	font-weight:normal;
+}
+
+.footline{
+	border-bottom:#FF8000 2px solid;
+}
+
+.circle {
+    background: #000;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    color:#fff;display:block;
+    text-align:center
+}
+
+.footer{
+	background:#555;
+	color:#fff;
+}
+.footer a{
+	color:#fff;
+}
+
+.footer a:hover{
+	text-decoration:underline;
+}
+
+
+
+	.link-container {
+
+	}
+
+	.link-container a {
+		display:block;padding:.5em;border-bottom:.09em solid #ddd;background:#fff;
+		text-decoration:none;color:#333;
+	}
+
+	.link-container a:hover {
+		background: #045FB4;
+		color:#fff;
+	}
+
+.htlnums{
+display:block;
+width:32px; height:32px;
+background:url(http://www.lowestroomrates.com/images/htls.png);
+background-repeat: no-repeat;
+ 
+}
+
+.savep{
+display:block;
+width:32px; height:32px;
+background:url(http://www.lowestroomrates.com/images/save.png);
+background-repeat: no-repeat;
+ 
+}
+
+
+#f5 a{
+display:block;
+width:29px; height:30px;
+background:url(http://www.lowestroomrates.com/images/f5.png);
+background-repeat: no-repeat;cursor:pointer;
+}
+
+#t5 a{
+display:block;
+width:29px; height:30px;
+background:url(http://www.lowestroomrates.com/images/t5.png);
+background-repeat: no-repeat;
+}
+
+
+#p5 a{
+display:block;
+width:29px; height:30px;
+background:url(http://www.lowestroomrates.com/images/p5.png);
+background-repeat: no-repeat;cursor:pointer;
+}
+
+#y5 a{
+display:block;
+width:29px; height:30px;
+background:url(http://www.lowestroomrates.com/images/y5.png);
+background-repeat: no-repeat;cursor:pointer;
+}
+
+#g5 a{
+display:block;
+width:29px; height:30px;
+background:url(http://www.lowestroomrates.com/images/g5.png);
+background-repeat: no-repeat;cursor:pointer;
+}
+
+.circle2{
+display:block;
+width:29px; height:30px;
+background:url(http://www.lowestroomrates.com/images/flags/circle.png);
+background-repeat: no-repeat;
+}
+.u{
+	text-decoration:underline;
+}
+
+
+#hotel_desc h1{
+display:inline;font-size:25px;
+}
+
+#hotel_desc h2{
+display:inline;font-size:20px;
+}
+
+.hotel_desc h2{
+display:inline;font-size:20px;
+}
+
+.hotel_desc_heading{}
+
+.hotel_desc_heading h1{display:inline;font-size:25px;}
+.hotel_desc_heading h2{display:inline;font-size:20px;}
+.hotel_desc_heading h3{display:inline;font-size:15px;}
+.hotel_desc_heading h4{display:inline;font-size:13px;}
+.two-col-special {
+    width:285px;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.two-col-special li{
+    list-style-image: url('../../../images/dotsk.png');
+    padding: 5px;font-size:12pt;
+
+}
+
+.two-col-special li:before {
+    content: ' ';
+    margin-right: 5px; 
+    color: #f00;
+    display: inline-block;
+}
+.mainwidth{width:980px;margin-left:auto;margin-right:auto;}
+#mtop li a{color:#1e90ff;font-weight:bold;}
+#mtop li a:hover{background:#000;color:#fff;}
+#social li{list-style-type:none;}
+.ident-left{
+	float:left;
+}
+
+.ident-right{
+	float:right;
+}
+
+selectx {
+   padding: .1em;
+   font-size: 1em;
+   border: .1em solid #ccc;
+   height: 1.7em;
+   font-weight:normal;	
+   width:150px;	
+} 
+
+.styledx{
+   height: 2em;
+   overflow: hidden;   
+}
+
+.fieldrowx{
+	font-size: .8em;
+	
+	padding:.3em;
+	padding-top:.5em;
+	padding-bottom:.5em;
+	
+	vertical-align:middle;
+	height:.5em;
+	background-color:#fff;
+
+}
+
+.roomswidth{
+	width:6em;
+	font-size:10pt;
+}
+
+body
+{
+	font-size:11pt;
+	font-family: fantasy;
+}
+
+table
+{
+	background:white;width:100%;
+}
+
+
+td{
+	padding: 0;
+}
+
+.test
+{
+	color:#fff;font-family: sans-serif;font-size: 15pt;font-weight: bold;
+	background: #000;padding: 1em;
+}
+
+.resultheading
+{
+	color:#fff;font-family: sans-serif;font-size: 12pt;font-weight: bold;
+	background: #333;padding: .5em;
+}
+
+.htlname
+{
+	font-size:12pt;color:#1e90ff;
+	font-family: fantasy;font-weight:bold;
+}
+
+.htlname a{text-decoration:none;color:#1e90ff;}
+
+.price
+{
+		font-size:12pt;color:#ff0000;
+	font-family: fantasy;font-weight:bold;
+}

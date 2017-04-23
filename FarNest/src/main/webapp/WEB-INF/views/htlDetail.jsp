@@ -15,19 +15,25 @@
 <body>
 <table>
     <tr>  
-      <td colspan="4" class="test">${hotel.name}</td>   
+      <td colspan="2" class="test">Selected hotel(s)</td>   
     </tr>
-     
+    <c:forEach items="${htlList.getHotels()}" var="htl">
         <tr>             
-            <td>${hotel.name}</td>
-            <td>${hotel.address1}</td>
-            <td>${hotel.address2}</td>
-            <td>${hotel.rate}</td>
-         </tr>		
-        		
-	 
+            <td>Name</td><td>${htl.name}</td>
+          </tr>		
         <tr>             
-            <td colspan="4"><a href="../displayHotel"><spring:message code="link.back" text="Back" /></a></td>
+             <td>Address1</td><td>${htl.address1}</td>
+
+         </tr>	
+         <tr>             
+             <td>Address2</td><td>${htl.address2}</td>
+         </tr>	
+        <tr>             
+             <td>Rate</td><td>${htl.rate}</td>
+         </tr>	         
+	</c:forEach>
+        <tr>             
+            <td colspan="2" class="test"><a href="../displayHotel"><spring:message code="link.back" text="Back" /></a></td>
 
          </tr>		
 	</table>
