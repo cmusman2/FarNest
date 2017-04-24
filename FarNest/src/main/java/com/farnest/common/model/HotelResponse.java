@@ -3,7 +3,7 @@ package com.farnest.common.model;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "hotellistresponse", namespace="")
+@XmlRootElement(name = "hotellistresponse", namespace="http://v3.hotel.wsapi.ean.com/")
 
 public class HotelResponse {
 
@@ -11,8 +11,7 @@ public class HotelResponse {
 	private String numberofroomsrequested;
 	private String moreresultsavailable;
 	private HotelList hotelList;
-	
-	
+		
 	
 	public HotelResponse()
 	{

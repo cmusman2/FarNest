@@ -1,5 +1,6 @@
 package com.farnest.common.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -201,5 +202,31 @@ public class TravelController {
 		mv.addObject("hotels",hotels);
 		return mv;
 
+	}
+	
+	
+	@RequestMapping(value = "/autoComplete")
+	public   List<String> autoComplete(@RequestParam("q")  String q)
+	{		
+          List<String> locations = new ArrayList();
+          
+          locations.add("Londonderry, Northern Ireland, United Kingdom|");
+          locations.add("London, England, United Kingdom|");
+          locations.add("London, Kentucky, United States of America|");
+          locations.add("London, Ohio, United States of America|");
+          locations.add("Manchester, Kentucky, United States of America|");
+          locations.add("Birmingham, Kentucky, United States of America|");
+          List<String> selected = new ArrayList();
+          for(String s:locations)
+          {
+	          if(s.toLowerCase().contains(q.toLowerCase())){selected.add(s);}
+          }
+          
+          
+          //locations.add("Londonderrey| \n");
+          //locations.add("London, Canada| \n");
+          
+          
+          return selected;
 	}
 }

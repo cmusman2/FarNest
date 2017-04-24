@@ -124,8 +124,10 @@ public void setRatecurrencycode(String ratecurrencycode) {
 
 
  
+
+
  @XmlElement
-	public String getShortdescription() {
+ public String getShortdescription() {
 	return shortdescription;
 }
 
@@ -134,8 +136,7 @@ public void setShortdescription(String shortdescription) {
 }
 
 
-	
- protected String city;
+protected String city;
  
 	@XmlElement
  public String getCity() {

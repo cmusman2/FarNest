@@ -27,6 +27,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
@@ -50,12 +51,18 @@ public class WSServiceDaos {
 	  //authenticate
 	  
 	  //String x = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><ns2:hotellistresponse xmlns:ns2=\"http://v3.hotel.wsapi.ean.com\"><customersessionid>0ABAAA42-487E-F915-62D2-4C6B0D9015B0</customersessionid><numberofroomsrequested>0</numberofroomsrequested><moreresultsavailable>false</moreresultsavailable><hotellist size=\"1374\" activepropertycount=\"1374\"><hotelsummary order=\"0\"><hotelid>284677</hotelid><name>Best Western Plus Delmere Hotel</name><address1>130 Sussex Gardens</address1><city>London</city><postalcode>W2 1UB</postalcode><countrycode>GB</countrycode><airportcode>LHR</airportcode><propertycategory>1</propertycategory><hotelrating>3.0</hotelrating><confidencerating>94</confidencerating><amenitymask>0</amenitymask><tripadvisorrating>4.0</tripadvisorrating><tripadvisorreviewcount>139</tripadvisorreviewcount><tripadvisorratingurl>http://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.0-16366-4.gif</tripadvisorratingurl><locationdescription>Near Marble Arch</locationdescription><shortdescription>&amp;lt;p&amp;gt;&amp;lt;b&amp;gt;Property Location&amp;lt;/b&amp;gt; &amp;lt;br /&amp;gt;With a stay at Best Western Plus Delmere Hotel in London (Paddington), you&amp;apos;ll be convenient to Hyde Park Speakers&amp;apos; Corner and Selfridges.  This hotel is close to</shortdescription><highrate>284.29</highrate><lowrate>163.91</lowrate><ratecurrencycode>USD</ratecurrencycode><latitude>51.51563</latitude><longitude>-0.17226</longitude><proximitydistance>3.075692</proximitydistance><proximityunit>MI</proximityunit><hotelindestination>true</hotelindestination><thumbnailurl>/hotels/1000000/30000/21700/21632/21632_126_t.jpg</thumbnailurl><deeplink>http://www.travelnow.com/templates/396041/hotels/284677/overview?lang=en&amp;amp;currency=USD&amp;amp;standardCheckin=null/null/null&amp;amp;standardCheckout=6/7/2018</deeplink></hotelsummary></hotellist></ns2:hotellistresponse>";
-	  String x = "<hotellistresponse><customersessionid>0ABAAA42-487E-F915-62D2-4C6B0D9015B0</customersessionid><numberofroomsrequested>0</numberofroomsrequested><moreresultsavailable>false</moreresultsavailable><hotellist size=\"1374\" activepropertycount=\"1374\"><hotelsummary order=\"0\"><hotelid>284677</hotelid><name>Best Western Plus Delmere Hotel</name><address1>130 Sussex Gardens</address1><city>London</city><postalcode>W2 1UB</postalcode><countrycode>GB</countrycode><airportcode>LHR</airportcode><propertycategory>1</propertycategory><hotelrating>3.0</hotelrating><confidencerating>94</confidencerating><amenitymask>0</amenitymask><tripadvisorrating>4.0</tripadvisorrating><tripadvisorreviewcount>139</tripadvisorreviewcount><tripadvisorratingurl>http://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.0-16366-4.gif</tripadvisorratingurl><locationdescription>Near Marble Arch</locationdescription><shortdescription>&amp;lt;p&amp;gt;&amp;lt;b&amp;gt;Property Location&amp;lt;/b&amp;gt; &amp;lt;br /&amp;gt;With a stay at Best Western Plus Delmere Hotel in London (Paddington), you&amp;apos;ll be convenient to Hyde Park Speakers&amp;apos; Corner and Selfridges.  This hotel is close to</shortdescription><highrate>284.29</highrate><lowrate>163.91</lowrate><ratecurrencycode>USD</ratecurrencycode><latitude>51.51563</latitude><longitude>-0.17226</longitude><proximitydistance>3.075692</proximitydistance><proximityunit>MI</proximityunit><hotelindestination>true</hotelindestination><thumbnailurl>/hotels/1000000/30000/21700/21632/21632_126_t.jpg</thumbnailurl><deeplink>http://www.travelnow.com/templates/396041/hotels/284677/overview?lang=en&amp;amp;currency=USD&amp;amp;standardCheckin=null/null/null&amp;amp;standardCheckout=6/7/2018</deeplink></hotelsummary></hotellist></hotellistresponse>";
+	  String x = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><ns2:hotellistresponse xmlns:ns2=\"http://v3.hotel.wsapi.ean.com\"><customersessionid>0ABAAA42-487E-F915-62D2-4C6B0D9015B0</customersessionid><numberofroomsrequested>0</numberofroomsrequested><moreresultsavailable>false</moreresultsavailable><hotellist size=\"1374\" activepropertycount=\"1374\"><hotelsummary order=\"0\"><hotelid>284677</hotelid><name>Best Western Plus Delmere Hotel</name><address1>130 Sussex Gardens</address1><city>London</city><postalcode>W2 1UB</postalcode><countrycode>GB</countrycode><airportcode>LHR</airportcode><propertycategory>1</propertycategory><hotelrating>3.0</hotelrating><confidencerating>94</confidencerating><amenitymask>0</amenitymask><tripadvisorrating>4.0</tripadvisorrating><tripadvisorreviewcount>139</tripadvisorreviewcount><tripadvisorratingurl>http://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.0-16366-4.gif</tripadvisorratingurl><locationdescription>Near Marble Arch</locationdescription><shortdescription>&amp;lt;p&amp;gt;&amp;lt;b&amp;gt;Property Location&amp;lt;/b&amp;gt; &amp;lt;br /&amp;gt;With a stay at Best Western Plus Delmere Hotel in London (Paddington), you&amp;apos;ll be convenient to Hyde Park Speakers&amp;apos; Corner and Selfridges.  This hotel is close to</shortdescription><highrate>284.29</highrate><lowrate>163.91</lowrate><ratecurrencycode>USD</ratecurrencycode><latitude>51.51563</latitude><longitude>-0.17226</longitude><proximitydistance>3.075692</proximitydistance><proximityunit>MI</proximityunit><hotelindestination>true</hotelindestination><thumbnailurl>/hotels/1000000/30000/21700/21632/21632_126_t.jpg</thumbnailurl><deeplink>http://www.travelnow.com/templates/396041/hotels/284677/overview?lang=en&amp;amp;currency=USD&amp;amp;standardCheckin=null/null/null&amp;amp;standardCheckout=6/7/2018</deeplink></hotelsummary></hotellist></ns2:hotellistresponse>";
 try
 {
+	
+	x = getData(city,sd,nights);
+	
+	//System.out.println(x);
+	
 	StringReader sr = new StringReader(x);
       
-	  
+	   
+	
 	  
 	  JAXBContext jc = JAXBContext.newInstance(HotelResponse.class);
       Unmarshaller unmarshaller = jc.createUnmarshaller();
@@ -67,9 +74,55 @@ try
 }catch(Exception exp)
 {
 	String ss = exp.getMessage();
+	System.out.println(ss);
 }
 	  
 	  /*
+	  */
+		List<HotelSummary> hs = new ArrayList();
+		
+		HotelSummary h= new HotelSummary();
+		h.setName("Marriott Manchester, Downtown");
+		h.setAddress1("In the city center");
+		h.setLowrate("325.55");
+		h.setThumbnailurl("/hotels/2000000/1900000/1897400/1897390/1897390_4_l.jpg");
+		hs.add(h);
+		
+		h= new HotelSummary();
+		h.setName("Crown plaza City Center");
+		h.setAddress1("Water front");
+		h.setLowrate("125.80");
+		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
+		hs.add(h);		
+		
+		h= new HotelSummary();
+		h.setName("Crown plaza City Center");
+		h.setAddress1("Water front");
+		h.setLowrate("125.80");
+		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
+		hs.add(h);	
+	  
+		h= new HotelSummary();
+		h.setName("Crown plaza City Center");
+		h.setAddress1("Water front");
+		h.setLowrate("125.80");
+		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
+		hs.add(h);	
+
+
+		h= new HotelSummary();
+		h.setName("Crown plaza City Center");
+		h.setAddress1("Water front");
+		h.setLowrate("125.80");
+		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
+		hs.add(h);	
+		
+		//get data
+	  return hs;
+  }
+  
+  public static String getData(String city, Date sd, int nights) throws ClientProtocolException, IOException
+  {
 	  String url = "http://www.lowestroomrates.com";
 
 	  HttpClient client = HttpClientBuilder.create().build();
@@ -135,48 +188,45 @@ try
 			while ((line = rdData.readLine()) != null) {
 				resultData.append(line);
 			}	
-			
+			return resultData.toString();
 		  
-	  }*/
-		List<HotelSummary> hs = new ArrayList();
-		
-		HotelSummary h= new HotelSummary();
-		h.setName("Marriott Manchester, Downtown");
-		h.setAddress1("In the city center");
-		h.setLowrate("325.55");
-		h.setThumbnailurl("/hotels/2000000/1900000/1897400/1897390/1897390_4_l.jpg");
-		hs.add(h);
-		
-		h= new HotelSummary();
-		h.setName("Crown plaza City Center");
-		h.setAddress1("Water front");
-		h.setLowrate("125.80");
-		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
-		hs.add(h);		
-		
-		h= new HotelSummary();
-		h.setName("Crown plaza City Center");
-		h.setAddress1("Water front");
-		h.setLowrate("125.80");
-		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
-		hs.add(h);	
+	  }
+	  return "";
 	  
-		h= new HotelSummary();
-		h.setName("Crown plaza City Center");
-		h.setAddress1("Water front");
-		h.setLowrate("125.80");
-		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
-		hs.add(h);	
+  }
+  
+  
+  
+  public static String getLocationData(String q) throws ClientProtocolException, IOException
+  {
+	  String url = "http://www.lowestroomrates.com";
+
+	  HttpClient client = HttpClientBuilder.create().build();
+	  HttpGet get = new HttpGet(url+"/src/autocomplete.php");
+	  
+	  List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+	  urlParameters.add(new BasicNameValuePair("q", q));
 
 
-		h= new HotelSummary();
-		h.setName("Crown plaza City Center");
-		h.setAddress1("Water front");
-		h.setLowrate("125.80");
-		h.setThumbnailurl("/hotels/1000000/900000/898700/898665/898665_117_l.jpg");
-		hs.add(h);	
-		
-		//get data
-	  return hs;
+	  ((HttpResponse) get).setEntity(new UrlEncodedFormEntity(urlParameters));
+
+	  HttpResponse response = client.execute(get);
+	  
+	  BufferedReader rd = new BufferedReader(
+		        new InputStreamReader(response.getEntity().getContent()));
+
+		StringBuffer result = new StringBuffer();
+		String line = "";
+		while ((line = rd.readLine()) != null) {
+			result.append(line);
+		}	  
+	  
+	  if(result.length()>0)
+	  {
+		 return result.toString();
+		  
+	  }
+	  return "";
+	  
   }
 }

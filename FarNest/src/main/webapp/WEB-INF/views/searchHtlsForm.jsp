@@ -88,6 +88,18 @@
 	</form>
 	
 	<script type="text/javascript" src="resources/scripts/development-bundle/jquery-1.6.2.js"></script>  <script type="text/javascript" src="resources/scripts/development-bundle/ui/jquery.ui.core.js"></script>  <script type="text/javascript" src="resources/scripts/development-bundle/ui/jquery.ui.datepicker.js"></script>  <script type="text/javascript" src="resources/scripts/development-bundle/jquery.autocomplete.js"></script>  <script type="text/javascript" src="resources/scripts/utils.js"></script> <script type="text/javascript" src="resources/scripts/js.js"></script> <script type="text/javascript" src="resources/scripts/utilsp.js"></script>
-<script type="text/javascript">    $(function() {  var dates = $( "#from" ).datepicker({  defaultDate: "+1w",  showOn: "both",  changeMonth: true,  buttonImageOnly: true,  numberOfMonths: 2,  dateFormat:'dd/mm/y',  onSelect: function( selectedDate ) {  var option = this.id == "from" ? "minDate" : "maxDate",  instance = $( this ).data( "datepicker" ),  date = $.datepicker.parseDate(  instance.settings.dateFormat ||  $.datepicker._defaults.dateFormat,  selectedDate, instance.settings );  dates.not( this ).datepicker( "option", option, date );  }  });  });     function findValue(li) {  if( li == null ) return alert("No match!");     if( !!li.extra ) var sValue = li.extra[0];     else var sValue = li.selectValue;  if (document.getElementById('CityAjaxH2')!=null){  document.getElementById('CityAjaxH2').value = li.extra[1];  }    }    function selectItem(li) {  findValue(li);  }    function formatItem(row) {  /*document.getElementById('destid').value = '';*/  if (document.getElementById('CityAjaxH2')!=null){  document.getElementById('CityAjaxH2').value = '';  }  return row[1] ;  }    function lookupAjax(){  var oSuggest = $("#CityAjaxH")[0].autocompleter;  oSuggest.findValue();  return false;  }    function lookupLocal(){  var oSuggest = $("#CityLocal")[0].autocompleter;  oSuggest.findValue();    return false;  }  $("#CityAjaxH").autocomplete(  "http://lowestroomrates.com/src/autocomplete.php",  {  delay:10,  minChars:3,  matchSubset:1,  matchContains:3,  cacheLength:0,  onItemSelect:selectItem,  onFindValue:findValue,  formatItem:formatItem,  autoFill:false  }  );     </script> 
+<script type="text/javascript">    
+
+$(function() {  var dates = $( "#from" ).datepicker({  defaultDate: "+1w",  showOn: "both",  changeMonth: true,  buttonImageOnly: true,  numberOfMonths: 2,  dateFormat:'dd/mm/y',  onSelect: function( selectedDate ) {  var option = this.id == "from" ? "minDate" : "maxDate",  instance = $( this ).data( "datepicker" ),  date = $.datepicker.parseDate(  instance.settings.dateFormat ||  $.datepicker._defaults.dateFormat,  selectedDate, instance.settings );  dates.not( this ).datepicker( "option", option, date );  }  });  });     
+
+function findValue(li) {  if( li == null ) return alert("No match!");     if( !!li.extra ) var sValue = li.extra[0];     else var sValue = li.selectValue;  if (document.getElementById('CityAjaxH2')!=null){  document.getElementById('CityAjaxH2').value = li.extra[1];  }    }    
+function selectItem(li) {  findValue(li);  }    
+function formatItem(row) {      if (document.getElementById('CityAjaxH2')!=null){  document.getElementById('CityAjaxH2').value = '';  }  return row[1] ;  }    
+function lookupAjax(){   var oSuggest = $("#CityAjaxH")[0].autocompleter;  oSuggest.findValue();  return false;  }    
+function lookupLocal(){    var oSuggest = $("#CityLocal")[0].autocompleter;  oSuggest.findValue();    return false;   }  
+$("#CityAjaxH").autocomplete(  "autoComplete",  {  delay:10,  minChars:3,  matchSubset:1,  matchContains:3,  cacheLength:0,  onItemSelect:selectItem,  onFindValue:findValue,  formatItem:formatItem,  autoFill:false  }  );     
+
+</script> 
+
 </body>
 </html>
