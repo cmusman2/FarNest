@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,7 +32,7 @@
 		</tr>
 		<tr>
 			<td>Destination</td>
-			 <td><input class="ac_input city_input" style="width:30%" type="search" id="CityAjaxH" name="CityAjaxH" value="London" value=""/></td>
+			 <td><input class="ac_input city_input" path="SDATEH" placeholder="Enter destination" style="height:30px;width:30%" type="search" id="CityAjaxH" name="CityAjaxH" /></td>
 			 <input type="hidden" id="hotelId">
 			 <input type="hidden" id="CityAjaxH2">
 			 <input type="hidden" id="CityLocal">
@@ -41,12 +40,12 @@
 		</tr>
 		<tr>
 			<td>Check-in</td>
-			<td><input type="from" style="width:30%" name="SDATEH" id="from" readonly="readonly"  class="date-input"/></td>
+			<td><input type="from" placeholder="dd/mm/yy" style="height:30px;width:30%" name="SDATEH" id="from" readonly="readonly"  class="date-input"/></td>
 		</tr>
 		<tr>
 			<td>Nights</td>
 			<td>
-			  <select  style="width:30%" id="nights">
+			  <select  style="height:30px;width:30%" id="nights" name="nights">
 			   <option value="1">1</option>
 			   <option value="2">2</option>
 			   <option value="3">3</option>

@@ -1,9 +1,10 @@
 package com.farnest.common.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.apache.http.client.ClientProtocolException;
 import org.hibernate.Session;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -189,7 +190,7 @@ public class TravelController {
 		List<HotelSummary> hotels=null;
 		try
 		{
-		   hotels = WSServiceDaos.Hotels(hotelSearch.getCityAjaxH(), hotelSearch.getSDATEH(), 1);
+		   hotels = WSServiceDaos.Hotels(hotelSearch.getCityAjaxH(), hotelSearch.getSDATEH(), hotelSearch.getNights());
 		}catch(Exception exp)
 		{
 			
@@ -206,27 +207,11 @@ public class TravelController {
 	
 	
 	@RequestMapping(value = "/autoComplete")
-	public   List<String> autoComplete(@RequestParam("q")  String q)
+	public   String autoComplete(@RequestParam("q")  String q) throws ClientProtocolException, IOException
 	{		
           List<String> locations = new ArrayList();
-          
-          locations.add("Londonderry, Northern Ireland, United Kingdom|");
-          locations.add("London, England, United Kingdom|");
-          locations.add("London, Kentucky, United States of America|");
-          locations.add("London, Ohio, United States of America|");
-          locations.add("Manchester, Kentucky, United States of America|");
-          locations.add("Birmingham, Kentucky, United States of America|");
-          List<String> selected = new ArrayList();
-          for(String s:locations)
-          {
-	          if(s.toLowerCase().contains(q.toLowerCase())){selected.add(s);}
-          }
-          
-          
-          //locations.add("Londonderrey| \n");
-          //locations.add("London, Canada| \n");
-          
-          
-          return selected;
+          String locationList= WSServiceDaos.getLocationData(q);
+                    
+          return locationList;
 	}
 }

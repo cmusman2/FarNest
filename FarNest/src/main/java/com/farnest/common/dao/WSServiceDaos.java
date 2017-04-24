@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +31,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -46,7 +49,7 @@ public class WSServiceDaos {
 	  return null;
   }
   
-  public static List<HotelSummary> Hotels(String city, Date sd, int nights) throws ClientProtocolException, IOException, JAXBException, XMLStreamException
+  public static List<HotelSummary> Hotels(String city, LocalDate sd, int nights) throws ClientProtocolException, IOException, JAXBException, XMLStreamException
   {
 	  //authenticate
 	  
@@ -121,7 +124,7 @@ try
 	  return hs;
   }
   
-  public static String getData(String city, Date sd, int nights) throws ClientProtocolException, IOException
+  public static String getData(String city, LocalDate sd, int nights) throws ClientProtocolException, IOException
   {
 	  String url = "http://www.lowestroomrates.com";
 
@@ -152,20 +155,21 @@ try
 		  HttpPost postData = new HttpPost(url+"/src/htllist.php");
 		  
 		  
-		  SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+		  DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yy");
 		  GregorianCalendar cal = new GregorianCalendar();
 		  if (sd==null)
-			  {sd = new Date();
-				cal.setTime(sd);
-				cal.add(Calendar.DATE, 1);
-				sd = cal.getTime();
+			  {
+			     
+			    sd = LocalDate.now();
+				 sd.plusDays(1);
+				
 			  }
-		  String s=df.format(sd);
+		    String s=sd.format(df);
 		  
 		  
-			cal.setTime(sd);
-			cal.add(Calendar.DATE, nights);
-			String e= df.format(cal.getTime());		  
+		    sd=sd.plusDays(nights);
+			
+			String e= sd.format(df);		  
 		  
 		  List<NameValuePair> urlParametersData = new ArrayList<NameValuePair>();
 		  urlParametersData.add(new BasicNameValuePair("xuid", result.toString()));
@@ -202,14 +206,18 @@ try
 	  String url = "http://www.lowestroomrates.com";
 
 	  HttpClient client = HttpClientBuilder.create().build();
-	  HttpGet get = new HttpGet(url+"/src/autocomplete.php");
 	  
-	  List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-	  urlParameters.add(new BasicNameValuePair("q", q));
+	  
+	  
+	  
+	  
+	  
+	  List<NameValuePair> urlParametersData = new ArrayList<NameValuePair>();
+	  urlParametersData.add(new BasicNameValuePair("q", q));
+	  String paramString = URLEncodedUtils.format(urlParametersData, "utf-8");
 
-
-	  ((HttpResponse) get).setEntity(new UrlEncodedFormEntity(urlParameters));
-
+	  
+	  HttpGet get = new HttpGet(url+"/src/autocomplete.php?"+paramString);
 	  HttpResponse response = client.execute(get);
 	  
 	  BufferedReader rd = new BufferedReader(
@@ -218,9 +226,10 @@ try
 		StringBuffer result = new StringBuffer();
 		String line = "";
 		while ((line = rd.readLine()) != null) {
-			result.append(line);
+			result.append(line+"\n");
 		}	  
-	  
+		
+	  System.out.println(result);
 	  if(result.length()>0)
 	  {
 		 return result.toString();
